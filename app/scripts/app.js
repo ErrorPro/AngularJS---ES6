@@ -1,9 +1,8 @@
 'use strict';
 
 /**
- * @module MainModule
- * @description Description
- * Dgeni works.
+ * The main application module. qweqweq weqw eqw
+ * It depends upon.
  */
 
 var app = angular.module('todo', []);

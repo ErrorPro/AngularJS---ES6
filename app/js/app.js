@@ -5,9 +5,8 @@ var _prototypeProperties = function (child, staticProps, instanceProps) { if (st
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 
 /**
- * @module MainModule
- * @description Description
- * Dgeni works.
+ * The main application module. qweqweq weqw eqw
+ * It depends upon.
  */
 
 var app = angular.module("todo", []);

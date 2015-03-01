@@ -10,7 +10,8 @@ var gulp = require('gulp'),
     concat = require("gulp-concat"),
     karma = require('gulp-karma'),
     Dgeni = require('dgeni'),
-    del = require('del');
+    del = require('del'),
+    bower = require('bower');
 
 var testFiles = [
     'bower_components/angular/angular.min.js',
@@ -29,6 +30,27 @@ gulp.task('test', function() {
             // Make sure failed tests cause gulp to exit non-zero
             throw err;
         });
+});
+
+gulp.task('assets', ['bower'], function() {
+    return gulp.src('bower_components/**/*')
+        .pipe(gulp.dest('build/lib'));
+});
+
+gulp.task('bower', function() {
+    var bowerTask = bower.commands.install();
+    bowerTask.on('log', function (result) {
+        console.log('bower:', result.id, result.data.endpoint.name);
+    });
+    bowerTask.on('error', function(error) {
+        console.log(error);
+    });
+    return bowerTask;
+});
+
+gulp.task('assets', ['bower'], function() {
+    return gulp.src('bower_components/**/*')
+        .pipe(gulp.dest('build/lib'));
 });
 
 gulp.task('dgeni', function() {
@@ -64,7 +86,7 @@ gulp.task('html',function(){
 gulp.task('watch',function(){
     gulp.watch('app/css/*.css',['css']);
     gulp.watch('app/index.html',['html']);
-    gulp.watch('app/scripts/*.js',['js']);
+    gulp.watch('app/scripts/*.js',['js','dgeni']);
     gulp.src(testFiles)
         .pipe(karma({
             configFile: 'karma.conf.js',
@@ -84,4 +106,4 @@ gulp.task("js", function () {
         .pipe(gulp.dest("app/js/"));
 });
 
-gulp.task('default',['connect', 'html', 'js','css', 'watch','test']);
+gulp.task('default',['connect', 'html', 'js','css', 'watch','test','clean','dgeni']);
