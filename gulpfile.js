@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     connect = require('gulp-connect'),
     livereload = require('gulp-livereload'),
     babel = require("gulp-babel"),
+    sourcemaps  = require("gulp-sourcemaps"),
     concat = require("gulp-concat"),
     karma = require('gulp-karma'),
     Dgeni = require('dgeni'),
@@ -101,8 +102,10 @@ gulp.task('clean', function(done) {
 
 gulp.task("js", function () {
     return gulp.src("app/scripts/*.js")
+        .pipe(sourcemaps.init())
         .pipe(concat('app.js'))
         .pipe(babel())
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest("app/js/"));
 });
 
