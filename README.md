@@ -6,7 +6,9 @@ Install:
 
 1. npm install
 
-2. gulp
+2. gulp bower
+
+3. gulp
 
 
 Это проект прототип Ангуляра на ES6.
