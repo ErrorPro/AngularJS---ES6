@@ -8,7 +8,9 @@ Install:
 
 2. gulp bower
 
-3. gulp
+3. gulp assets
+
+4. gulp
 
 
 Это проект прототип Ангуляра на ES6.
