@@ -17,7 +17,7 @@ module.exports = function(config) {
     files: [
         'bower_components/angular/angular.min.js',
         'node_modules/angular-mocks/angular-mocks.js',
-        'app/js/*.js',
+        'app/scripts/*.js',
         'test/*.js'
     ],
 
@@ -30,6 +30,19 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+        'app/scripts/*.js': ['babel']
+    },
+
+    'babelPreprocessor': {
+        options: {
+            sourceMap: 'inline'
+        },
+        filename: function(file) {
+            return file.originalPath.replace(/\.js$/, '.es5.js');
+        },
+        sourceFileName: function(file) {
+            return file.originalPath;
+        }
     },
 
 

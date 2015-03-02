@@ -16,7 +16,7 @@ var gulp = require('gulp'),
 var testFiles = [
     'bower_components/angular/angular.min.js',
     'node_modules/angular-mocks/angular-mocks.js',
-    'app/js/*.js',
+    'app/scripts/*.js',
     'test/*.js'
 ];
 
